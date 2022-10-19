@@ -9,7 +9,7 @@ import {
     LogoutOutlined,
 } from '@ant-design/icons'
 
-import { isConnected } from '../util/metadapp'
+import { isConnected } from '../util/BuenosDias'
 import { Web3Instance } from '../util/web3Instance'
 import { InitialState } from '../util/consts'
 

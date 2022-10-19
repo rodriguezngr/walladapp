@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract MetaDappTokenSale is Ownable {
+contract BuenosDiasTokenSale is Ownable {
 
     using Address for address;
     using SafeMath for uint;

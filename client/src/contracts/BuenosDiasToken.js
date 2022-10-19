@@ -1,4 +1,4 @@
-import TokenContract from './MetaDappToken.json'
+import TokenContract from './BuenosDiasToken.json'
 import contract from 'truffle-contract'
 
 export default async (provider) => {

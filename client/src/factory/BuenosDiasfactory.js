@@ -1,7 +1,7 @@
 import { hashToURL, _getImages } from "../util/imagesaver"
 import axios from 'axios'
 
-export default class MetaDappFactory {
+export default class BuenosDiasFactory {
     constructor(contract) {
         this.contract = contract
     }

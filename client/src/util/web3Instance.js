@@ -2,7 +2,7 @@ import Web3Modal from "web3modal"
 import Web3 from "web3"
 import WalletConnectProvider from "@walletconnect/web3-provider"
 import { Networks } from './consts'
-import { isConnected } from "./metadapp"
+import { isConnected } from "./BuenosDias"
 import { message } from "antd"
 
 export class Web3Instance {

@@ -29,14 +29,14 @@ import ImgCrop from 'antd-img-crop'
 import './Account.scss'
 
 import { Web3Instance } from '../util/web3Instance'
-import MetaDappContract from '../contracts/MetaDapp'
-import MetaDappFactory from '../factory/metadappfactory'
-import TokenSaleContract from '../contracts/MetaDappTokenSale'
+import BuenosDiasContract from '../contracts/BuenosDias'
+import BuenosDiasFactory from '../factory/BuenosDiasfactory'
+import BuenosDiasContract from '../contracts/BuenosDiasTokenSale'
 import TokenSaleFactory from '../factory/tokensalefactory'
 import TokenContract from '../contracts/MetaDappToken'
 import TokenFactory from '../factory/tokenfactory'
 
-import { _sections, _base64, _mapImagesProduct, isConnected, bnbPrice } from '../util/metadapp'
+import { _sections, _base64, _mapImagesProduct, isConnected, bnbPrice } from '../util/BuenosDias'
 import { saveImages, _saveImages } from '../util/imagesaver'
 
 import Login from './Login'

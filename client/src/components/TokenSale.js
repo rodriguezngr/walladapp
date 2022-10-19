@@ -15,11 +15,11 @@ import {
 import { InitialState } from '../util/consts'
 
 import { Web3Instance } from '../util/web3Instance'
-import TokenSaleContract from '../contracts/MetaDappTokenSale'
+import TokenSaleContract from '../contracts/BuenosDiasTokenSale'
 import TokenSaleFactory from '../factory/tokensalefactory'
 import TokenContract from '../contracts/MetaDappToken'
 import TokenFactory from '../factory/tokenfactory'
-import { isConnected } from '../util/metadapp'
+import { isConnected } from '../util/BuenosDias'
 import { _bnbToWei, _weiToBNB } from '../util/units'
 import Login from '../components/Login'
 

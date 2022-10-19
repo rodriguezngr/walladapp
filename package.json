@@ -1,7 +1,7 @@
 {
-  "name": "walldapp-project",
+  "name": "buenosdias-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Recuerda renombrar el archivo truffle-config.default.js por truffle-config.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,18 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
-    "@truffle/hdwallet-provider": "^2.0.8",
+    "@truffle/hdwallet-provider": "^2.0.16",
     "ipfs-http-client": "^56.0.0"
   },
   "devDependencies": {
-    "truffle-plugin-verify": "^0.5.26"
-  }
+    "truffle-plugin-verify": "^0.5.28"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meta-dapp/walladapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meta-dapp/walladapp/issues"
+  },
+  "homepage": "https://github.com/meta-dapp/walladapp#readme"
 }

@@ -3,8 +3,8 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract MetaDappToken is ERC20 {
-    constructor() ERC20("MetaDapp Token", "MDA"){
+contract BuenosDiasToken is ERC20 {
+    constructor() ERC20("BuenosDiasToken", "BDT"){
         _mint(msg.sender, 50000 * 10**18);
     }
 

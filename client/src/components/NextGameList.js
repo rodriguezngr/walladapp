@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { isConnected, _isPurchased } from '../util/metadapp'
+import { isConnected, _isPurchased } from '../util/BuenosDias'
 import { InitialState } from '../util/consts'
 import { Web3Instance } from '../util/web3Instance'
 
-import MetaDappContract from '../contracts/MetaDapp'
-import MetaDappFactory from '../factory/metadappfactory'
-import TokenContract from '../contracts/MetaDappToken'
+import BuenosDiasContract from '../contracts/BuenosDias'
+import BuenosDiasFactory from '../factory/BuenosDiasfactory'
+import TokenContract from '../contracts/BuenosDiasToken'
 import TokenFactory from '../factory/tokenfactory'
 import Login from './Login'
 
