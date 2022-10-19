@@ -19,7 +19,7 @@ import TokenSaleContract from '../contracts/BuenosDiasTokenSale'
 import TokenSaleFactory from '../factory/tokensalefactory'
 import TokenContract from '../contracts/BuenosDiasToken'
 import TokenFactory from '../factory/tokenfactory'
-import { isConnected } from '../util/BuenosDias'
+import { isConnected } from '../util/buenosdias'
 import { _bnbToWei, _weiToBNB } from '../util/units'
 import Login from '../components/Login'
 
@@ -31,7 +31,7 @@ export default class TokenSale extends Component {
         this.state = InitialState.TokenSale
     }
 
-    componenteDidMount() {
+    componentWillUnmount() {
         this.resetState()
     }
 
@@ -50,7 +50,7 @@ export default class TokenSale extends Component {
         } else this.props.history.push('/login')
     }
 
-    async UNSAFE_componentWillMount() {
+    async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
         this.checkConnection()        
     }

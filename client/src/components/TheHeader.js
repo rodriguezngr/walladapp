@@ -9,7 +9,7 @@ import {
     LogoutOutlined,
 } from '@ant-design/icons'
 
-import { isConnected } from '../util/BuenosDias'
+import { isConnected } from '../util/buenosdias'
 import { Web3Instance } from '../util/web3Instance'
 import { InitialState } from '../util/consts'
 
@@ -30,7 +30,7 @@ class TheHeader extends Component {
         this.setState(InitialState.TheHeader)
     }
 
-    UNSAFE_componenteDidMount() {
+    componentWillUnmount() {
         this.resetState()
     }
 
@@ -53,7 +53,7 @@ class TheHeader extends Component {
         } else this.props.history.push('/login')
     }
 
-    async UNSAFE_componentWillMount() {
+    async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
         this.checkConnection(true)        
     }

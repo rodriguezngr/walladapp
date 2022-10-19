@@ -36,7 +36,7 @@ import TokenSaleFactory from '../factory/tokensalefactory'
 import TokenContract from '../contracts/BuenosDiasToken'
 import TokenFactory from '../factory/tokenfactory'
 
-import { _sections, _base64, _mapImagesProduct, isConnected, bnbPrice } from '../util/BuenosDias'
+import { _sections, _base64, _mapImagesProduct, isConnected, bnbPrice } from '../util/buenosdias'
 import { saveImages, _saveImages } from '../util/imagesaver'
 
 import Login from './Login'
@@ -51,7 +51,7 @@ export default class Account extends Component {
         this.state = InitialState.Account
     }
 
-    UNSAFE_componenteDidMount() {
+    componentWillUnmount() {
         this.resetState()
     }
 
@@ -70,7 +70,7 @@ export default class Account extends Component {
         } else this.props.history.push('/login')
     }
 
-    async UNSAFE_componentWillMount() {
+    async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
         this.checkConnection()        
     }
@@ -360,8 +360,8 @@ export default class Account extends Component {
                             <Descriptions.Item label="Usuario">
                                 {this.state.data.name} <EditOutlined onClick={() => { this.updateUser(<UserOutlined />, 'Nombre de usuario', 'name') }} />
                             </Descriptions.Item>
-                            <Descriptions.Item label="Contacto">
-                                {this.state.data.contact} <EditOutlined onClick={() => { this.updateUser(<MailOutlined />, 'Contacto', 'contact') }} />
+                            <Descriptions.Item label="Correo Electronico ">
+                                {this.state.data.contact} <EditOutlined onClick={() => { this.updateUser(<MailOutlined />, 'Correo Electronico ', 'contact') }} />
                             </Descriptions.Item>
                             <Descriptions.Item label="Balance">
                                 <span><strong>{this.state.balance ? this.state.balance.toLocaleString('es') : 0} {this.state.token_symbol}</strong></span><br></br>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { isConnected, _isPurchased } from '../util/BuenosDias'
+import { isConnected, _isPurchased } from '../util/buenosdias'
 import { InitialState } from '../util/consts'
 import { Web3Instance } from '../util/web3Instance'
 
@@ -48,7 +48,7 @@ class NextGamesList extends Component {
         } else this.props.history.push('/login')
     }
 
-    async UNSAFE_componentWillMount() {
+    async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
         this.checkConnection()        
     }
