@@ -30,7 +30,7 @@ class TheHeader extends Component {
         this.setState(InitialState.TheHeader)
     }
 
-    componentWillUnmount() {
+    UNSAFE_componenteDidMount() {
         this.resetState()
     }
 
@@ -53,9 +53,9 @@ class TheHeader extends Component {
         } else this.props.history.push('/login')
     }
 
-    async componentDidMount() {
+    async UNSAFE_componentWillMount() {
         this._web3Instance = await new Web3Instance().init()
-        this.checkConnection(true)
+        this.checkConnection(true)        
     }
 
     async load() {

@@ -13,7 +13,7 @@ export default class TheFooter extends Component {
 
     render() {
         return (
-            <Footer style={{ textAlign: 'center' }}><img style={{ width: '30px', height: "auto" }} src="/walldapp_square.png" /> MetaDapp.io ©2022 Powered by @MetaDapp</Footer>
+            <Footer style={{ textAlign: 'center' }}><img style={{ width: '30px', height: "auto" }} src="/walldapp_square.png" /> BuenosDias.com.ar ©2022 Powered by @BuenosDias</Footer>
         )
     }
 }

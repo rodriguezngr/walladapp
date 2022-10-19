@@ -30,7 +30,7 @@ export function _isPurchased(reserved_by) {
 }
 
 export function _sections() {
-    return ["playstation", "xbox", "nintendo", "pc"];
+    return ["Perfumeria", "Bebidas", "Limpieza", "Ofertas"];
 }
 
 export function _base64(file) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
 import "antd/dist/antd.dark.css";
 import { Layout } from "antd";
 import { Content } from "antd/lib/layout/layout";
@@ -19,8 +19,8 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-      <Router>
+    return  (
+      <Router >
         <Layout style={{ minHeight: "100vh" }}>
           <NavItems />
           <Layout className="site-layout">
@@ -29,10 +29,10 @@ export default class App extends Component {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/" component={NextGameList} />
-                <Route exact path="/playstation" component={NextGameList} />
-                <Route exact path="/xbox" component={NextGameList} />
-                <Route exact path="/nintendo" component={NextGameList} />
-                <Route exact path="/pc" component={NextGameList} />
+                <Route exact path="/Perfumeria" component={NextGameList} />
+                <Route exact path="/Bebidas" component={NextGameList} />
+                <Route exact path="/Limpieza" component={NextGameList} />
+                <Route exact path="/Ofertas" component={NextGameList} />
                 <Route exact path="/my-account" component={Account} />
                 <Route exact path="/token-sale" component={TokenSale} />
                 <Route component={Error404} />

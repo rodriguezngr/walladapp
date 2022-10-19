@@ -1,7 +1,7 @@
 import ipfs from '../storage/ipfs'
 
 export function hashToURL(hash) {
-    return `https://cloudflare-ipfs.com/ipfs/${hash}`
+    return `https://dweb.link/ipfs/${hash}`
 }
 
 function readFile(file) {
