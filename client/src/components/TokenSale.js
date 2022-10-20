@@ -17,9 +17,9 @@ import { InitialState } from '../util/consts'
 import { Web3Instance } from '../util/web3Instance'
 import TokenSaleContract from '../contracts/BuenosDiasTokenSale'
 import TokenSaleFactory from '../factory/tokensalefactory'
-import TokenContract from '../contracts/MetaDappToken'
+import TokenContract from '../contracts/BuenosDiasToken'
 import TokenFactory from '../factory/tokenfactory'
-import { isConnected } from '../util/BuenosDias'
+import { isConnected } from '../util/buenosdias'
 import { _bnbToWei, _weiToBNB } from '../util/units'
 import Login from '../components/Login'
 
@@ -52,7 +52,7 @@ export default class TokenSale extends Component {
 
     async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
-        this.checkConnection()
+        this.checkConnection()        
     }
 
     async load() {
@@ -161,7 +161,7 @@ export default class TokenSale extends Component {
                     </Row>
                 </Card>
                 <Modal
-                    title="Comprar MetaDapp Tokens"
+                    title="Comprar BuenosDias Tokens"
                     visible={this.state.isModalVisible}
                     onOk={async () => this.__callBuyTokens()}
                     onCancel={() => {

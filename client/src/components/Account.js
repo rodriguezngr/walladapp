@@ -31,12 +31,12 @@ import './Account.scss'
 import { Web3Instance } from '../util/web3Instance'
 import BuenosDiasContract from '../contracts/BuenosDias'
 import BuenosDiasFactory from '../factory/BuenosDiasfactory'
-import BuenosDiasContract from '../contracts/BuenosDiasTokenSale'
+import TokenSaleContract from '../contracts/BuenosDiasTokenSale'
 import TokenSaleFactory from '../factory/tokensalefactory'
-import TokenContract from '../contracts/MetaDappToken'
+import TokenContract from '../contracts/BuenosDiasToken'
 import TokenFactory from '../factory/tokenfactory'
 
-import { _sections, _base64, _mapImagesProduct, isConnected, bnbPrice } from '../util/BuenosDias'
+import { _sections, _base64, _mapImagesProduct, isConnected, bnbPrice } from '../util/buenosdias'
 import { saveImages, _saveImages } from '../util/imagesaver'
 
 import Login from './Login'
@@ -72,7 +72,7 @@ export default class Account extends Component {
 
     async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
-        this.checkConnection()
+        this.checkConnection()        
     }
 
     copyAddr() {
@@ -84,11 +84,11 @@ export default class Account extends Component {
         this.setState({
             account: this._web3Instance.getAccount()
         }, async () => {
-            const Metadapp = await MetaDappContract(this._web3Instance.getProvider())
+            const BuenosDias = await BuenosDiasContract(this._web3Instance.getProvider())
             const TokenSale = await TokenSaleContract(this._web3Instance.getProvider())
             const Token = await TokenContract(this._web3Instance.getProvider())
 
-            this._MetaDappFactory = new MetaDappFactory(Metadapp)
+            this._BuenosDiasFactory = new BuenosDiasFactory(BuenosDias)
             this._TokenSaleFactory = new TokenSaleFactory(TokenSale)
             this._TokenFactory = new TokenFactory(Token)
 
@@ -96,14 +96,14 @@ export default class Account extends Component {
                 balance: (await this._TokenSaleFactory._tokens(this.state.account)),
                 token_price: (await this._TokenSaleFactory._tokenPrice()),
                 token_price_change: (await this._TokenSaleFactory._priceChangePercent()),
-                totalProducts: (await this._MetaDappFactory._totalProducts()),
-                totalUsers: (await this._MetaDappFactory._totalUsers()),
-                data: (await this._MetaDappFactory._getUser(this.state.account)),
+                totalProducts: (await this._BuenosDiasFactory._totalProducts()),
+                totalUsers: (await this._BuenosDiasFactory._totalUsers()),
+                data: (await this._BuenosDiasFactory._getUser(this.state.account)),
                 phase: (await this._TokenSaleFactory._currentPhase()),
                 tokensSold: (await this._TokenSaleFactory._tokensSold()),
                 totalTokens: (await this._TokenSaleFactory._totalTokens()),
                 token_symbol: (await this._TokenFactory._symbol()),
-                allowance: (await this._TokenFactory._allowance(this.state.account, this._MetaDappFactory._address()))
+                allowance: (await this._TokenFactory._allowance(this.state.account, this._BuenosDiasFactory._address()))
             }, async () => {
                 if (this.state.token_price) {
                     const price = parseFloat((await bnbPrice()))
@@ -151,11 +151,11 @@ export default class Account extends Component {
             }))
 
             if (ipfsRes && 'path' in ipfsRes)
-                await this._MetaDappFactory._updateUserContact(ipfsRes.path, this.state.account)
+                await this._BuenosDiasFactory._updateUserContact(ipfsRes.path, this.state.account)
 
             this.setState({
                 isModalVisible: false,
-                data: (await this._MetaDappFactory._getUser(this.state.account))
+                data: (await this._BuenosDiasFactory._getUser(this.state.account))
             }, () => {
                 hideLoad()
                 message.success({
@@ -172,7 +172,7 @@ export default class Account extends Component {
 
     async addProduct() {
         this.setState({
-            isProductModalVisible: true,
+            isProductModalOpen: true,
             modalTitle: 'Nuevo producto'
         })
     }
@@ -192,7 +192,7 @@ export default class Account extends Component {
     async confirm() {
         if (this.productValid())
             this.setState({
-                product_comission: (await this._MetaDappFactory._percentValue(this.state.product_price, this.state.account)),
+                product_comission: (await this._BuenosDiasFactory._percentValue(this.state.product_price, this.state.account)),
                 product_confirmed: true
             })
         else message.error({ content: `Debes completar todos los campos`, key: this.state.account, duration: 2 })
@@ -231,7 +231,7 @@ export default class Account extends Component {
                 }))
 
                 if (ipfsRes && 'path' in ipfsRes) {
-                    await this._MetaDappFactory._addProduct(
+                    await this._BuenosDiasFactory._addProduct(
                         this.state.product_name,
                         ipfsRes.path,
                         this.state.product_section,
@@ -240,7 +240,7 @@ export default class Account extends Component {
                     )
 
                     this.setState({
-                        isProductModalVisible: false
+                        isProductModalOpen: false
                     }, () => {
                         hideLoad()
                         message.success({ content: `Producto agregado correctamente!`, key: this.state.account, duration: 2 })
@@ -266,13 +266,13 @@ export default class Account extends Component {
         const hideLoad = message.loading(`Aprobando ${this.amountCommision()} ${this.state.token_symbol}...`, 0)
         try {
             await this._TokenFactory._approve(
-                this._MetaDappFactory._address(),
+                this._BuenosDiasFactory._address(),
                 _toBigNumber(_bnbToWei(this.amountCommision())),
                 this.state.account
             )
 
             this.setState({
-                allowance: (await this._TokenFactory._allowance(this.state.account, this._MetaDappFactory._address()))
+                allowance: (await this._TokenFactory._allowance(this.state.account, this._BuenosDiasFactory._address()))
             }, () => {
                 hideLoad()
                 message.success({ content: `${this.amountCommision()} ${this.state.token_symbol} aprobados correctamente!`, key: this.state.account, duration: 2 })
@@ -360,8 +360,8 @@ export default class Account extends Component {
                             <Descriptions.Item label="Usuario">
                                 {this.state.data.name} <EditOutlined onClick={() => { this.updateUser(<UserOutlined />, 'Nombre de usuario', 'name') }} />
                             </Descriptions.Item>
-                            <Descriptions.Item label="Contacto">
-                                {this.state.data.contact} <EditOutlined onClick={() => { this.updateUser(<MailOutlined />, 'Contacto', 'contact') }} />
+                            <Descriptions.Item label="Correo Electronico ">
+                                {this.state.data.contact} <EditOutlined onClick={() => { this.updateUser(<MailOutlined />, 'Correo Electronico ', 'contact') }} />
                             </Descriptions.Item>
                             <Descriptions.Item label="Balance">
                                 <span><strong>{this.state.balance ? this.state.balance.toLocaleString('es') : 0} {this.state.token_symbol}</strong></span><br></br>
@@ -389,7 +389,7 @@ export default class Account extends Component {
                 </Row>
                 <Row>
                     <Card>
-                        <Descriptions title="MetaDapp" bordered>
+                        <Descriptions title="BuenosDias" bordered>
                             <Descriptions.Item label="Usuarios totales">
                                 {this.state.totalUsers}
                             </Descriptions.Item>
@@ -418,10 +418,10 @@ export default class Account extends Component {
                 <Modal
                     footer={this.getFooterButtons()}
                     title={this.state.modalTitle}
-                    visible={this.state.isProductModalVisible}
+                    visible={this.state.isProductModalOpen}
                     onCancel={() => {
                         this.setState({
-                            isProductModalVisible: false
+                            isProductModalOpen: false
                         })
                     }}>
                     <Row style={{ margin: '10px' }}>

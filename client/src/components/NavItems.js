@@ -4,9 +4,11 @@ import 'antd/dist/antd.dark.css'
 import { Layout, Menu } from 'antd'
 import Icon from '@ant-design/icons'
 
+
 import './NavItems.scss'
 
 const { Sider } = Layout
+
 
 function NavItems() {
     const [appData, setAppData] = useState({
@@ -33,24 +35,24 @@ function NavItems() {
 
                 <Menu.Divider className="main-menu-divider-all" />
 
-                <Menu.Item key="1" icon={<Icon component={() => (<img src="/ps.png" />)} />}>
-                    PLAYSTATION
-                    <Link to="/playstation" />
+                <Menu.Item key="1" icon={<Icon component={() => (<img src="/Perfumeria.png" />)} />}>
+                    Perfumeria
+                    <Link to="/Perfumeria" />
                 </Menu.Item>
 
-                <Menu.Item key="2" icon={<Icon component={() => (<img src="/xbox.png" />)} />}>
-                    XBOX
-                    <Link to="/xbox" />
+                <Menu.Item key="2" icon={<Icon component={() => (<img src="/Bebidas.png" />)} />}>
+                    Bebidas
+                    <Link to="/Bebidas" />
                 </Menu.Item>
 
-                <Menu.Item key="3" icon={<Icon component={() => (<img src="/nintendo.png" />)} />}>
-                    NINTENDO
-                    <Link to="/nintendo" />
+                <Menu.Item key="3" icon={<Icon component={() => (<img src="/Limpieza.png" />)} />}>
+                    Limpieza
+                    <Link to="/Limpieza" />
                 </Menu.Item>
 
-                <Menu.Item key="4" icon={<Icon component={() => (<img src="/pc.png" />)} />}>
-                    PC
-                    <Link to="/pc" />
+                <Menu.Item key="4" icon={<Icon component={() => (<img src="/Ofertas.png" />)} />}>
+                    Ofertas
+                    <Link to="/Ofertas" />
                 </Menu.Item>
 
                 <Menu.Divider className="main-menu-divider-middle" />
@@ -73,10 +75,10 @@ function NavItems() {
 function getSelectedItem() {
     return {
         '/': '1',
-        '/playstation': '1',
-        '/xbox': '2',
-        '/nintendo': '3',
-        '/pc': '4',
+        '/Perfumeria': '1',
+        '/Bebidas': '2',
+        '/Limpieza': '3',
+        '/Ofertas': '4',
         '/my-account': '5',
         '/token-sale': '6'
     }[window.location.pathname.replace('/', '').trim().toLowerCase()]

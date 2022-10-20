@@ -1,5 +1,5 @@
 const BuenosDias = artifacts.require('BuenosDias')
 
 module.exports = function (deployer) {
-    deployer.deploy(BuenosDias, '0x79265165a0a39eE23556c830BF5d9d8B39A98165')
+    deployer.deploy(BuenosDias, '0x4a445A422a43c7c2a953290b1B999fBDAc056762')
 }

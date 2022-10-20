@@ -9,7 +9,7 @@ import {
     LogoutOutlined,
 } from '@ant-design/icons'
 
-import { isConnected } from '../util/BuenosDias'
+import { isConnected } from '../util/buenosdias'
 import { Web3Instance } from '../util/web3Instance'
 import { InitialState } from '../util/consts'
 
@@ -55,7 +55,7 @@ class TheHeader extends Component {
 
     async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
-        this.checkConnection(true)
+        this.checkConnection(true)        
     }
 
     async load() {

@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract BuenosDiasToken is ERC20 {
     constructor() ERC20("BuenosDiasToken", "BDT"){
-        _mint(msg.sender, 50000 * 10**18);
+        _mint(msg.sender, 10000000 * 10**18);
     }
 
     function burn(uint256 amount) public {

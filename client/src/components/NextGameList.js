@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { isConnected, _isPurchased } from '../util/BuenosDias'
+import { isConnected, _isPurchased } from '../util/buenosdias'
 import { InitialState } from '../util/consts'
 import { Web3Instance } from '../util/web3Instance'
 
@@ -43,19 +43,19 @@ class NextGamesList extends Component {
             }, () => {
                 if (this.state.section)
                     this.load()
-                else this.props.history.push('/playstation')
+                else this.props.history.push('/Perfumeria')
             })
         } else this.props.history.push('/login')
     }
 
     async componentDidMount() {
         this._web3Instance = await new Web3Instance().init()
-        this.checkConnection()
+        this.checkConnection()        
     }
 
     getSection() {
         const section = window.location.pathname.replace('/', '').trim().toLowerCase()
-        return section === '' ? 'playstation' : section
+        return section === '' ? 'Perfumeria' : section
     }
 
     disconnect() {
@@ -96,13 +96,13 @@ class NextGamesList extends Component {
             account: this._web3Instance.getAccount()
         }, async () => {
             const Token = await TokenContract(this._web3Instance.getProvider())
-            const MetaDapp = await MetaDappContract(this._web3Instance.getProvider())
+            const BuenosDias = await BuenosDiasContract(this._web3Instance.getProvider())
 
-            this._MetaDappFactory = new MetaDappFactory(MetaDapp)
+            this._BuenosDiasFactory = new BuenosDiasFactory(BuenosDias)
             this._TokenFactory = new TokenFactory(Token)
 
             this.setState({
-                data: (await this._MetaDappFactory._getProducts()),
+                data: (await this._BuenosDiasFactory._getProducts()),
                 token_symbol: (await this._TokenFactory._symbol())
             })
 
@@ -136,7 +136,7 @@ class NextGamesList extends Component {
     itemDetailsVisibility = async (visible, account) => {
         if (visible) {
             this.setState({
-                itemDetailsContact: (await this._MetaDappFactory._getUser(account)).contact
+                itemDetailsContact: (await this._BuenosDiasFactory._getUser(account)).contact
             })
         } else {
             this.setState({
@@ -182,7 +182,7 @@ class NextGamesList extends Component {
 
     async selectItem(item) {
         this.setState({
-            allowance: (await this._TokenFactory._allowance(this.state.account, this._MetaDappFactory._address())),
+            allowance: (await this._TokenFactory._allowance(this.state.account, this._BuenosDiasFactory._address())),
             itemToBuy: item,
             isModalVisible: true
         })
@@ -192,12 +192,12 @@ class NextGamesList extends Component {
         const hideLoad = message.loading(`Aprobando ${_weiToBNB(this.state.itemToBuy.price)} ${this.state.token_symbol}...`, 0)
         try {
             await this._TokenFactory._approve(
-                this._MetaDappFactory._address(),
+                this._BuenosDiasFactory._address(),
                 _toBigNumber(this.state.itemToBuy.price), this.state.account
             )
 
             this.setState({
-                allowance: (await this._TokenFactory._allowance(this.state.account, this._MetaDappFactory._address()))
+                allowance: (await this._TokenFactory._allowance(this.state.account, this._BuenosDiasFactory._address()))
             }, () => {
                 hideLoad()
                 message.success({ content: `${_weiToBNB(this.state.itemToBuy.price)} ${this.state.token_symbol} aprobados correctamente!`, key: this.state.account, duration: 2 })
@@ -212,10 +212,10 @@ class NextGamesList extends Component {
         const hideLoad = message.loading(`Comprando ${this.state.itemToBuy.name}...`, 0)
 
         try {
-            await this._MetaDappFactory._buyProduct(this.state.itemToBuy.id, this.state.account)
+            await this._BuenosDiasFactory._buyProduct(this.state.itemToBuy.id, this.state.account)
             this.setState({
                 isModalVisible: false,
-                data: (await this._MetaDappFactory._getProducts())
+                data: (await this._BuenosDiasFactory._getProducts())
             }, () => {
                 hideLoad()
                 message.success({ content: `${this.state.itemToBuy.name} comprado correctamente!`, key: this.state.account, duration: 2 })
@@ -254,7 +254,7 @@ class NextGamesList extends Component {
                                         style={{ width: 200, margin: '10px' }}
                                         cover={this.getCarousel(pass.images)}>
                                         <Popover
-                                            onVisibleChange={async (visible) => this.itemDetailsVisibility(visible, pass.owner)}
+                                            onOpenChange={async (visible) => this.itemDetailsVisibility(visible, pass.owner)}
                                             content={this.popContent(pass)}
                                             title={pass.name}
                                             trigger="click">

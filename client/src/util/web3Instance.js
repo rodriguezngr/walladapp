@@ -2,7 +2,7 @@ import Web3Modal from "web3modal"
 import Web3 from "web3"
 import WalletConnectProvider from "@walletconnect/web3-provider"
 import { Networks } from './consts'
-import { isConnected } from "./BuenosDias"
+import { isConnected } from "./buenosdias"
 import { message } from "antd"
 
 export class Web3Instance {
@@ -42,7 +42,7 @@ export class Web3Instance {
     }
 
     async _getAccount() {
-        const account = (await this._web3.eth.getAccounts())[0]
+        const account = (await this._web3.eth.requestAccounts())[0]
         return account ? account.toLowerCase() : undefined
     }
 
@@ -66,7 +66,7 @@ export class Web3Instance {
             this._fetchAccount(accounts)
         })
 
-        this.provider.on("networkChanged", (networkId) => {
+        this.provider.on("chainChanged", (networkId) => {
             if (networkId == Networks.bsct.id) {
                 this.disconnect()
                 this.connect()

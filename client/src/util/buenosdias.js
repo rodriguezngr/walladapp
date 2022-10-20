@@ -30,7 +30,7 @@ export function _isPurchased(reserved_by) {
 }
 
 export function _sections() {
-    return ["playstation", "xbox", "nintendo", "pc"];
+    return ["Perfumeria", "Bebidas", "Limpieza", "Ofertas"];
 }
 
 export function _base64(file) {
@@ -52,9 +52,9 @@ export function _mapImagesProduct(images) {
 
 export async function bnbPrice() {
     const res = await axios(
-        `https://min-api.cryptocompare.com/data/price?fsym=BNB&tsyms=USD`
+        `https://min-api.cryptocompare.com/data/price?fsym=BNB&tsyms=ARS`
     );
-    return res.data.USD || 0.0;
+    return res.data.ARS || 0.0;
 }
 
 export function _nameToSlug(name) {
