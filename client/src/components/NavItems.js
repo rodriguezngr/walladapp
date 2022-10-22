@@ -35,24 +35,24 @@ function NavItems() {
 
                 <Menu.Divider className="main-menu-divider-all" />
 
-                <Menu.Item key="1" icon={<Icon component={() => (<img src="/Perfumeria.png" />)} />}>
-                    Perfumeria
-                    <Link to="/Perfumeria" />
+                <Menu.Item key="1" icon={<Icon component={() => (<img src="/Album2022.png" />)} />}>
+                    Album2022
+                    <Link to="/Album2022" />
                 </Menu.Item>
 
-                <Menu.Item key="2" icon={<Icon component={() => (<img src="/Bebidas.png" />)} />}>
-                    Bebidas
-                    <Link to="/Bebidas" />
+                <Menu.Item key="2" icon={<Icon component={() => (<img src="/Argentina.png" />)} />}>
+                    Argentina
+                    <Link to="/Argentina" />
                 </Menu.Item>
 
-                <Menu.Item key="3" icon={<Icon component={() => (<img src="/Limpieza.png" />)} />}>
-                    Limpieza
-                    <Link to="/Limpieza" />
+                <Menu.Item key="3" icon={<Icon component={() => (<img src="/Brasil.png" />)} />}>
+                    Brasil
+                    <Link to="/Brasil" />
                 </Menu.Item>
 
-                <Menu.Item key="4" icon={<Icon component={() => (<img src="/Ofertas.png" />)} />}>
-                    Ofertas
-                    <Link to="/Ofertas" />
+                <Menu.Item key="4" icon={<Icon component={() => (<img src="/Alemania.png" />)} />}>
+                    Alemania
+                    <Link to="/Alemania" />
                 </Menu.Item>
 
                 <Menu.Divider className="main-menu-divider-middle" />
@@ -75,10 +75,10 @@ function NavItems() {
 function getSelectedItem() {
     return {
         '/': '1',
-        '/Perfumeria': '1',
-        '/Bebidas': '2',
-        '/Limpieza': '3',
-        '/Ofertas': '4',
+        '/Album2022': '1',
+        '/Argentina': '2',
+        '/Brasil': '3',
+        '/Alemania': '4',
         '/my-account': '5',
         '/token-sale': '6'
     }[window.location.pathname.replace('/', '').trim().toLowerCase()]

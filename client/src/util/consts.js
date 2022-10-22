@@ -35,7 +35,7 @@ export const InitialState = {
         tokensSold: 0,
         totalTokens: 0,
         fileList: [],
-        product_section: 'Perfumeria',
+        product_section: 'Album2022',
         product_desc: '',
         product_name: '',
         product_price: 0,

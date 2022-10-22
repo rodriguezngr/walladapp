@@ -43,7 +43,7 @@ class NextGamesList extends Component {
             }, () => {
                 if (this.state.section)
                     this.load()
-                else this.props.history.push('/Perfumeria')
+                else this.props.history.push('/Album2022')
             })
         } else this.props.history.push('/login')
     }
@@ -55,7 +55,7 @@ class NextGamesList extends Component {
 
     getSection() {
         const section = window.location.pathname.replace('/', '').trim().toLowerCase()
-        return section === '' ? 'Perfumeria' : section
+        return section === '' ? 'Album2022' : section
     }
 
     disconnect() {

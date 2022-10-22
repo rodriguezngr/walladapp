@@ -29,10 +29,10 @@ export default class App extends Component {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/" component={NextGameList} />
-                <Route exact path="/Perfumeria" component={NextGameList} />
-                <Route exact path="/Bebidas" component={NextGameList} />
-                <Route exact path="/Limpieza" component={NextGameList} />
-                <Route exact path="/Ofertas" component={NextGameList} />
+                <Route exact path="/Album2022" component={NextGameList} />
+                <Route exact path="/Argentina" component={NextGameList} />
+                <Route exact path="/Brasil" component={NextGameList} />
+                <Route exact path="/Alemania" component={NextGameList} />
                 <Route exact path="/my-account" component={Account} />
                 <Route exact path="/token-sale" component={TokenSale} />
                 <Route component={Error404} />

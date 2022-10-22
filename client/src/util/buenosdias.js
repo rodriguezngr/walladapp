@@ -30,7 +30,7 @@ export function _isPurchased(reserved_by) {
 }
 
 export function _sections() {
-    return ["Perfumeria", "Bebidas", "Limpieza", "Ofertas"];
+    return ["Albun2022", "Argentina", "Brasil", "Alemania"];
 }
 
 export function _base64(file) {
